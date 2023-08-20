@@ -1,63 +1,148 @@
 const text = document.querySelector("textarea")
-
+const body = document.querySelector("body")
+const options = [...document.querySelectorAll(".options input")]
 const countBtn = document.querySelector("button")
 
-const info = document.createElement("div")
-const body = document.querySelector("body")
-const options = document.querySelectorAll(".options input")
+
+const wordsObj = {
+    name: "Words",
+    check: true,
+    quantity: 0
+}
+
+const charactersObj = {
+    name: "Characters (no spaces)",
+    check: false,
+    quantity: 0
+}
+
+const sentencesObj = {
+    name: "Sentences",
+    check: false,
+    quantity: 0
+}
+
+const spacesObj = {
+    name: "Spaces",
+    check: false,
+    quantity: 0
+}
 
 
+let updatedValue = ""
 
 
+let checkedInputs = document.querySelectorAll("input:checked")
+
+function allValues() {
+    checkedInputs.forEach(inp => {
+        if (inp.dataset.words) {
+            const words = updatedValue.trim().split(" ")
+
+            wordsObj.quantity = words.length
+            if(updatedValue === ""){
+                wordsObj.quantity = 0
+            }
+            
 
 
+        }
+        if (inp.dataset.characters) {
+            charactersObj.quantity = updatedValue.split('').filter(c => c !== ' ').length
+
+        }
+
+        if (inp.dataset.sentences) {
+            sentencesObj.quantity = updatedValue.split(".").length - 1;
+        }
+
+        if (inp.dataset.spaces) {
+            spacesObj.quantity = updatedValue.split(' ').length - 1;
+        }
 
 
-countBtn.addEventListener("click", () => {
+    })
+}
+
+text.addEventListener("keyup", (e) => {
+    updatedValue = e.target.value
+    allValues()
+})
 
 
-    renderTable()
+options.forEach(input => {
+
+    input.addEventListener("change", (e) => {
+
+        checkedInputs = options.filter(item => item.checked)
+
+        allValues()
+
+
+        if (e.target.checked && e.target.dataset.words) {
+            wordsObj.check = true
+        } else if(!e.target.checked && e.target.dataset.words) {
+            wordsObj.check = false
+        }
+
+        if (e.target.checked && e.target.dataset.characters) {
+            charactersObj.check = true
+        } else if(!e.target.checked && e.target.dataset.characters){
+            charactersObj.check = false
+        }
+
+        
+        if (e.target.checked && e.target.dataset.sentences) {
+            sentencesObj.check = true
+        } else if(!e.target.checked && e.target.dataset.sentences) {
+            sentencesObj.check = false
+        }
+
+        if (e.target.checked && e.target.dataset.spaces) {
+            spacesObj.check = true
+        } else if(!e.target.checked && e.target.dataset.spaces) {
+            spacesObj.check = false
+        }
+
+    })
+
 
 })
 
 
-function renderTable() {
-    info.innerHTML = ""
 
 
-    options.forEach(input=>{
-        console.log(input.dataset)
-    })
+const info = document.createElement("div")
+
+function renderTable(data) {
 
 
-    const words = text.value.trim().split(" ")
-    const wordsCount = words.length
+    let countsList
 
-    const charactersCount = text.value.split('').filter(c => c !== ' ').length;
+    if (data.length > 0) {
 
-    const sentencesCount = text.value.split(".").length - 1;
+        countsList = data.filter(item => item.check)
+            .map(item => `<li><span class="name">${item.name}</span><span class="quantity">${item.quantity}</span>`)
+            .toString()
+            .replaceAll(',', '')
+    }
 
-
-    const spacesCount = text.value.split(' ').length - 1;
-
-    info.innerHTML += `
+    info.innerHTML = `
      <div class="table_wrapper">
-            <ul class="left">
-                <h2 class="table_title">Name</h2>
-                <li>Words</li>
-                <li>characters (no spaces) </li>
-                <li>Sentences</li>
-                <li>Spaces</li>
-            </ul>
         <ul class="right">
-            <h2 class="table_title">Quantity</h2>
-            <li>${wordsCount}</li>
-            <li>${charactersCount}</li>
-            <li>${sentencesCount}</li>
-            <li>${spacesCount}</li>
+           ${countsList}
         </ul>
         </div>
 
     `
+
     body.append(info)
+
+
 }
+
+countBtn.addEventListener("click", () => {
+
+    renderTable([wordsObj, charactersObj, sentencesObj, spacesObj])
+
+})

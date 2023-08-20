@@ -26,6 +26,15 @@ body {
     width: 700px;
     height: 250px;
   }
+
+  .options{
+    display: flex;
+    flex-direction: column;
+  }
+
+  input{
+    margin: 10px 20px;
+  }
   
   .info_btn {
     margin-top: 20px;
@@ -36,10 +45,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 7px;
   }
 
-  .table_wrapper li{
+  .left li,.right li{
     padding: 8px 3px;
   }
 
@@ -49,17 +57,21 @@ body {
     padding: 10px;
   }
 
-.left{
-  }
 
   .left li{
     border:1px solid black; 
   }
 
   .right{
+    display: flex;
+    flex-direction: column;
     text-align: center;
   }
 
   .right li {
     border:1px solid black; 
+  }
+
+  .name{
+    font-weight: 600;
   }
