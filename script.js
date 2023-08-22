@@ -3,7 +3,6 @@ const body = document.querySelector("body")
 const options = [...document.querySelectorAll(".options input")]
 const countBtn = document.querySelector("button")
 
-
 const wordsObj = {
     name: "Words",
     check: true,
@@ -40,11 +39,10 @@ function allValues() {
             const words = updatedValue.trim().split(" ")
 
             wordsObj.quantity = words.length
-            if(updatedValue === ""){
+            if(updatedValue.trim() === ""){
                 wordsObj.quantity = 0
             }
             
-
 
         }
         if (inp.dataset.characters) {
@@ -110,22 +108,29 @@ options.forEach(input => {
 })
 
 
-
-
 const info = document.createElement("div")
+
+
 
 function renderTable(data) {
 
-
+ 
     let countsList
 
     if (data.length > 0) {
 
-        countsList = data.filter(item => item.check)
+        countsList = data.filter(item => item.check && item.quantity > 0)
             .map(item => `<li><span class="name">${item.name}</span><span class="quantity">${item.quantity}</span>`)
             .toString()
             .replaceAll(',', '')
+    } 
+
+    const empty = data.filter(item=> item.quantity !== 0)
+
+    if(empty.length === 0){
+        countsList = `<p>Please check any option</p>`
     }
+
 
     info.innerHTML = `
      <div class="table_wrapper">
