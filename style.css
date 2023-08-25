@@ -16,10 +16,37 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #d2d4c8;
+    height: 95vh;
   }
   
-  h1 {
+  .main_title {
     text-align: center;
+    color:#6a994e;
+    font-weight: 600;
+    font-size: 45px;
+  }
+
+  .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 40px;
+    margin: 50px 0;
+
+  }
+
+  label{
+    color: #003049;
+    cursor: pointer;
+  }
+
+  label:hover{
+    opacity: 0.7;
+  }
+
+  label span{
+    font-size: 25px;
+    margin-right: 5px;
   }
   
   textarea {
@@ -28,53 +55,68 @@ body {
     padding: 10px;
     width: 700px;
     height: 250px;
+    border-radius:8px;
   }
 
-  .options{
-    display: flex;
-    flex-direction: column;
+  textarea:focus{
+    border: 2px solid #669bbc;
   }
 
-  input{
-    margin: 10px 20px;
+  textarea::placeholder{
+    font-size: 17px;
   }
-  
+
   .info_btn {
     margin-top: 20px;
+    padding: 10px 30px;
+    color: #fff ;
+    font-size: 20px;
+    background-color: #6b9080;
+    cursor: pointer;
+    outline: 0;
+    border: 1px solid #669bbc;
+    transition: 0.2s ease-in;
   }
   
+  .info_btn:hover{
+    background-color: #4c956c;
+    border-color:#15616d ;
+  }
 
   .table_wrapper{
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .left li,.right li{
-    padding: 8px 3px;
-  }
-
-  .table_title{
-    margin-bottom: 10px;
-    border: 1px solid;
-    padding: 10px;
-  }
-
-
-  .left li{
-    border:1px solid black; 
-  }
-
-  .right{
-    display: flex;
+   
     flex-direction: column;
-    text-align: center;
+    width: 400px;
   }
 
-  .right li {
-    border:1px solid black; 
-  }
-
-  .name{
+ 
+  .row{
+    display: flex;
+    align-items: center;
+    border: 1px solid #003049;
+    height: 40px;
+    line-height: 40px;
+    padding: 8px;
+    max-width: 100%;
+    color: black;
     font-weight: 600;
+  }
+
+
+  .row_name{
+ 
+    
+    width: 250px;
+    font-size: 20px;
+    
+  } 
+
+
+  .row_quantity{
+    text-align: center;
+    padding: 0px 8px;
+    border-left: 1px solid #003049;
+    font-size: 19px;
   }

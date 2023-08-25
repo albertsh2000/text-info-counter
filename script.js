@@ -120,7 +120,10 @@ function renderTable(data) {
     if (data.length > 0) {
 
         countsList = data.filter(item => item.check && item.quantity > 0)
-            .map(item => `<li><span class="name">${item.name}</span><span class="quantity">${item.quantity}</span>`)
+            .map(item => `<li class="row">
+                        <span class="row_name">${item.name}</span>
+                        <span class="row_quantity">${item.quantity}</span>
+                </li>`)
             .toString()
             .replaceAll(',', '')
     } 
@@ -133,11 +136,10 @@ function renderTable(data) {
 
 
     info.innerHTML = `
-     <div class="table_wrapper">
-        <ul class="right">
+     
+        <ul class="table_wrapper">
            ${countsList}
         </ul>
-        </div>
 
     `
 
