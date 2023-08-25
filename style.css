@@ -16,14 +16,14 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #d2d4c8;
-    height: 95vh;
+    min-height: 100vh;
   }
   
   .main_title {
     text-align: center;
     color:#6a994e;
     font-weight: 600;
-    font-size: 45px;
+    font-size: 50px;
   }
 
   .options{
@@ -32,6 +32,7 @@ body {
     justify-content: space-evenly;
     gap: 40px;
     margin: 50px 0;
+    padding: 0 10px;
 
   }
 
@@ -54,7 +55,7 @@ body {
     resize: none;
     padding: 10px;
     width: 700px;
-    height: 250px;
+    min-height: 250px;
     border-radius:8px;
   }
 
@@ -85,6 +86,7 @@ body {
 
   .table_wrapper{
     margin-top: 20px;
+    margin-bottom: 5px;
     display: flex;
    
     flex-direction: column;
@@ -104,19 +106,108 @@ body {
     font-weight: 600;
   }
 
-
   .row_name{
- 
-    
     width: 250px;
     font-size: 20px;
-    
   } 
-
 
   .row_quantity{
     text-align: center;
     padding: 0px 8px;
     border-left: 1px solid #003049;
     font-size: 19px;
+  }
+
+
+
+
+  @media(max-width:720px){
+
+    .main_title{
+      font-size: 60px;
+    }
+
+    label span {
+        font-size: 30px;
+        
+    }
+    .options{
+      gap: 20px;
+    }
+    textarea{
+      width: 600px;
+      min-height: 350px;
+    }
+  }
+
+  @media(max-width:650px){
+    .options{
+      flex-wrap: wrap;
+    }
+    textarea{
+      width: 480px;
+    }
+  }
+
+
+
+
+  @media(max-width:520px){ 
+    textarea{
+      width: 380px;
+      min-height: 300px;
+    }
+  }
+
+
+  @media(max-width:450px){
+    .main_title{
+      font-size: 45px;
+    }
+    textarea{
+     width: 320px;
+      min-height: 270px;
+    }
+    .table_wrapper{
+      width: 330px;
+    } 
+    .row_name{
+      width: 238px;
+    }
+  }
+
+
+  @media(max-width:370px){
+    .main_title {
+        font-size: 41px;
+    }
+   
+    textarea {
+        width: 290px;
+        min-height: 250px;
+    }
+
+    label span {
+        font-size: 25px;
+    }
+    
+    .table_wrapper{
+      width: 310px;
+    } 
+
+    .row_name{
+      width: 235px;
+    }
+  }
+
+
+  
+  @media(max-width:335px){
+    .table_wrapper{
+      width: 290px;
+    } 
+    .row_name {
+        width: 210px;
+        font-size: 18px;
+    }
   }

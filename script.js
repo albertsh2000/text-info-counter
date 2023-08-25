@@ -16,7 +16,7 @@ const charactersObj = {
 }
 
 const sentencesObj = {
-    name: "Sentences",
+    name: "Sentences (only dots)",
     check: false,
     quantity: 0
 }
