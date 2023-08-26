@@ -1,0 +1,86 @@
+@media (max-width: 720px) {
+   #no_hover {
+      opacity: 1 !important;
+   }
+   #no_hover_btn {
+      background-color: #6b9080;
+
+      border: 1px solid #669bbc;
+   }
+   .main_title {
+      font-size: 60px;
+   }
+
+   .label_name {
+      font-size: 30px;
+   }
+   .options {
+      gap: 20px;
+   }
+   textarea {
+      width: 600px;
+      min-height: 350px;
+   }
+}
+
+@media (max-width: 650px) {
+   textarea {
+      width: 480px;
+   }
+}
+
+@media (max-width: 520px) {
+   textarea {
+      width: 380px;
+      min-height: 300px;
+   }
+}
+
+@media (max-width: 450px) {
+   .main_title {
+      font-size: 45px;
+   }
+   textarea {
+      width: 320px;
+      min-height: 270px;
+   }
+   .table_wrapper {
+      width: 330px;
+   }
+   .row_name {
+      width: 238px;
+   }
+}
+
+@media (max-width: 370px) {
+   .main_title {
+      font-size: 41px;
+   }
+
+   textarea {
+      width: 290px;
+      min-height: 250px;
+   }
+
+   .label_name {
+      font-size: 25px;
+   }
+
+   .table_wrapper {
+      width: 310px;
+   }
+
+   .row_name {
+      width: 235px;
+   }
+}
+
+@media (max-width: 335px) {
+   .table_wrapper {
+      width: 290px;
+   }
+   .row_name {
+      width: 210px;
+      font-size: 18px;
+   }
+}

@@ -4,152 +4,131 @@ const options = [...document.querySelectorAll(".options input")]
 const countBtn = document.querySelector("button")
 
 const wordsObj = {
-    name: "Words",
-    check: true,
-    quantity: 0
+   name: "Words",
+   check: true,
+   quantity: 0,
 }
 
-const charactersObj = {
-    name: "Characters (no spaces)",
-    check: false,
-    quantity: 0
+const symbolsObj = {
+   name: "symbols (no spaces)",
+   check: false,
+   quantity: 0,
 }
 
 const sentencesObj = {
-    name: "Sentences (only dots)",
-    check: false,
-    quantity: 0
+   name: "Sentences (only dots)",
+   check: false,
+   quantity: 0,
 }
 
 const spacesObj = {
-    name: "Spaces",
-    check: false,
-    quantity: 0
+   name: "Spaces",
+   check: false,
+   quantity: 0,
 }
-
 
 let updatedValue = ""
 
-
 let checkedInputs = document.querySelectorAll("input:checked")
 
-function allValues() {
-    checkedInputs.forEach(inp => {
-        if (inp.dataset.words) {
-            const words = updatedValue.trim().split(" ")
+function collectUpdatedValues() {
+   checkedInputs.forEach((inp) => {
+      if (inp.dataset.words) {
+         const words = updatedValue.trim().split(" ")
 
-            wordsObj.quantity = words.length
-            if(updatedValue.trim() === ""){
-                wordsObj.quantity = 0
-            }
-            
+         wordsObj.quantity = words.length
+         if (updatedValue.trim() === "") {
+            wordsObj.quantity = 0
+         }
+      }
+      if (inp.dataset.symbols) {
+         symbolsObj.quantity = updatedValue
+            .split("")
+            .filter((symbol) => symbol !== " ").length
+      }
 
-        }
-        if (inp.dataset.characters) {
-            charactersObj.quantity = updatedValue.split('').filter(c => c !== ' ').length
+      if (inp.dataset.sentences) {
+         sentencesObj.quantity = updatedValue.split(".").length - 1
+      }
 
-        }
-
-        if (inp.dataset.sentences) {
-            sentencesObj.quantity = updatedValue.split(".").length - 1;
-        }
-
-        if (inp.dataset.spaces) {
-            spacesObj.quantity = updatedValue.split(' ').length - 1;
-        }
-
-
-    })
+      if (inp.dataset.spaces) {
+         spacesObj.quantity = updatedValue.split(" ").length - 1
+      }
+   })
 }
 
 text.addEventListener("keyup", (e) => {
-    updatedValue = e.target.value
-    allValues()
+   updatedValue = e.target.value
+   collectUpdatedValues()
 })
 
+options.forEach((input) => {
+   input.addEventListener("change", (e) => {
+      checkedInputs = options.filter((item) => item.checked)
 
-options.forEach(input => {
+      collectUpdatedValues()
 
-    input.addEventListener("change", (e) => {
+      if (e.target.checked && e.target.dataset.words) {
+         wordsObj.check = true
+      } else if (!e.target.checked && e.target.dataset.words) {
+         wordsObj.check = false
+      }
 
-        checkedInputs = options.filter(item => item.checked)
+      if (e.target.checked && e.target.dataset.symbols) {
+         symbolsObj.check = true
+      } else if (!e.target.checked && e.target.dataset.symbols) {
+         symbolsObj.check = false
+      }
 
-        allValues()
+      if (e.target.checked && e.target.dataset.sentences) {
+         sentencesObj.check = true
+      } else if (!e.target.checked && e.target.dataset.sentences) {
+         sentencesObj.check = false
+      }
 
-
-        if (e.target.checked && e.target.dataset.words) {
-            wordsObj.check = true
-        } else if(!e.target.checked && e.target.dataset.words) {
-            wordsObj.check = false
-        }
-
-        if (e.target.checked && e.target.dataset.characters) {
-            charactersObj.check = true
-        } else if(!e.target.checked && e.target.dataset.characters){
-            charactersObj.check = false
-        }
-
-        
-        if (e.target.checked && e.target.dataset.sentences) {
-            sentencesObj.check = true
-        } else if(!e.target.checked && e.target.dataset.sentences) {
-            sentencesObj.check = false
-        }
-
-        if (e.target.checked && e.target.dataset.spaces) {
-            spacesObj.check = true
-        } else if(!e.target.checked && e.target.dataset.spaces) {
-            spacesObj.check = false
-        }
-
-    })
-
-
+      if (e.target.checked && e.target.dataset.spaces) {
+         spacesObj.check = true
+      } else if (!e.target.checked && e.target.dataset.spaces) {
+         spacesObj.check = false
+      }
+   })
 })
-
 
 const info = document.createElement("div")
 
-
-
 function renderTable(data) {
+   let countsList
 
- 
-    let countsList
+   if (data.length > 0) {
+      countsList = data
+         .filter((item) => item.check && item.quantity > 0)
+         .map(
+            (item) => `<li class="row">
+                          <span class="row_name">${item.name}</span>
+                          <span class="row_quantity">${item.quantity}</span>
+                       </li>`
+         )
+         .toString()
+         .replaceAll(",", "")
+   }
 
-    if (data.length > 0) {
+   const empty = data.filter((item) => item.quantity !== 0).length === 0
+   const notChecked = data.filter((item) => item.check === false).length === options.length
 
-        countsList = data.filter(item => item.check && item.quantity > 0)
-            .map(item => `<li class="row">
-                        <span class="row_name">${item.name}</span>
-                        <span class="row_quantity">${item.quantity}</span>
-                </li>`)
-            .toString()
-            .replaceAll(',', '')
-    } 
+   const showError = empty || notChecked || updatedValue.trim() === ""
 
-    const empty = data.filter(item=> item.quantity !== 0)
+   if (showError) {
+      countsList = `<p class="error_msg">Please check any option or type text</p>`
+   }
 
-    if(empty.length === 0){
-        countsList = `<p>Please check any option</p>`
-    }
-
-
-    info.innerHTML = `
-     
+   info.innerHTML = `
         <ul class="table_wrapper">
            ${countsList}
         </ul>
-
     `
-
-    body.append(info)
-
-
+   body.append(info)
 }
 
 countBtn.addEventListener("click", () => {
-
-    renderTable([wordsObj, charactersObj, sentencesObj, spacesObj])
-
+   renderTable([wordsObj, symbolsObj, sentencesObj, spacesObj])
 })

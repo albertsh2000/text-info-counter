@@ -1,32 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Info Counter</title>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="UTF-8" />
-  </head>
-  <body> 
-    <h1 class="main_title">Text info counter</h1>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="Css/style.css" />
+      <link rel="stylesheet" href="Css/responsive.css">
+      <title>Text info counter</title>
+   </head>
+   <body>
+      <h1 class="main_title">Text info counter</h1>
       <div class="options">
-        <label>
-           <span>Words</span>
-          <input type="checkbox"  data-words="words" checked ></label>
-        <label>
-          <span>Characters</span>
-          
-          <input type="checkbox"   data-characters="characters"></label>
-        <label>
-          <span>Sentences</span>
-          
-          <input type="checkbox"  data-sentences="sentences"></label>
-        <label>
-          <span>Spaces</span>
-          
-          <input type="checkbox"  data-spaces="spaces"></label>
+         <label id="no_hover">
+            <span class="label_name">Words</span>
+            <input
+               type="checkbox"
+               class="real_checkbox"
+               data-words="words"
+               checked
+            />
+            <span class="custom_checkbox"></span>
+         </label>
+         <label id="no_hover">
+            <span class="label_name">Symbols</span>
+            <input
+               type="checkbox"
+               class="real_checkbox"
+               data-symbols="symbols"
+            />
+            <span class="custom_checkbox"></span>
+         </label>
+         <label id="no_hover">
+            <span class="label_name">Sentences</span>
+            <input
+               type="checkbox"
+               class="real_checkbox"
+               data-sentences="sentences"
+            />
+            <span class="custom_checkbox"></span>
+         </label>
+         <label id="no_hover">
+            <span class="label_name">Spaces</span>
+            <input type="checkbox" class="real_checkbox" data-spaces="spaces" />
+            <span class="custom_checkbox"></span>
+         </label>
       </div>
-    <textarea placeholder="Type or paste text here !!!"></textarea>
-    <button class="info_btn">Get info</button>
-    
-    <script src="./script.js"></script>
-  </body>
+      <textarea placeholder="Type or paste text here !!!"></textarea>
+      <button class="info_btn" id="no_hover_btn">Get info</button>
+      
+      <script src="script.js"></script>
+   </body>
 </html>

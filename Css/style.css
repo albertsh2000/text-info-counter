@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,700&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   list-style: none;
+   text-decoration: none;
+}
+
+body {
+   font-family: "Bricolage Grotesque", sans-serif;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   background-color: #d2d4c8;
+   width: 100%;
+   min-height: 100vh;
+}
+
+.main_title {
+   text-align: center;
+   color: #6a994e;
+   font-weight: 600;
+   font-size: 50px;
+}
+
+.options {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+   gap: 40px;
+   margin: 50px 0;
+   padding: 0 10px;
+}
+
+.real_checkbox {
+   position: absolute;
+   width: 0;
+   height: 0;
+   opacity: 0;
+   z-index: -1;
+}
+
+.custom_checkbox {
+   display: inline-block;
+   position: relative;
+   width: 20px;
+   height: 20px;
+   background-color: #fff;
+   vertical-align: sub;
+   margin-right: 5px;
+   border-radius: 5px;
+}
+
+.custom_checkbox::before {
+   content: "";
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   background-image: url(../checkmark.png);
+   background-repeat: no-repeat;
+   background-size: contain;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   transition: 0.2s ease-in;
+}
+
+.real_checkbox:checked + .custom_checkbox::before {
+   transform: translate(-50%, -50%) scale(1);
+}
+
+label {
+   color: #003049;
+   cursor: pointer;
+}
+
+label:hover {
+   opacity: 0.7;
+}
+
+.label_name {
+   font-size: 25px;
+   margin-right: 5px;
+}
+
+textarea {
+   outline: none;
+   resize: none;
+   padding: 10px;
+   width: 700px;
+   min-height: 250px;
+   border-radius: 8px;
+}
+
+textarea:focus {
+   border: 2px solid #669bbc;
+}
+
+textarea::placeholder {
+   font-size: 17px;
+}
+
+.info_btn {
+   margin-top: 20px;
+   padding: 10px 30px;
+   color: #fff;
+   font-size: 20px;
+   background-color: #6b9080;
+   cursor: pointer;
+   outline: 0;
+   border: 1px solid #669bbc;
+   transition: 0.2s ease-in;
+}
+
+.info_btn:hover {
+   background-color: #4c956c;
+   border-color: #15616d;
+}
+
+.table_wrapper {
+   margin-top: 20px;
+   margin-bottom: 10px;
+   display: flex;
+   flex-direction: column;
+   width: 400px;
+}
+
+.error_msg {
+   font-size: 22px;
+   color: red;
+   text-align: center;
+   padding: 0 5px;
+}
+
+.row {
+   display: flex;
+   align-items: center;
+   border: 1px solid #003049;
+   height: 40px;
+   line-height: 40px;
+   padding: 8px;
+   max-width: 100%;
+   color: black;
+   font-weight: 600;
+}
+
+.row_name {
+   width: 250px;
+   font-size: 20px;
+}
+
+.row_quantity {
+   text-align: center;
+   padding: 0px 8px;
+   border-left: 1px solid #003049;
+   font-size: 19px;
+}
